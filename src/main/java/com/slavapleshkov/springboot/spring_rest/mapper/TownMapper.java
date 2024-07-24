@@ -5,12 +5,16 @@ import com.slavapleshkov.springboot.spring_rest.model.Town;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 public interface TownMapper {
 
-    Town townDtoToTown(TownDto townDto);
+    Town toTown(TownDto townDto);
 
-    TownDto townToTownDto(Town town);
+    TownDto toDto(Town town);
+
+    List<TownDto> toDtoList(List<Town> towns);
 
 
 }
