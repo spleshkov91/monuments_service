@@ -4,7 +4,7 @@ public class ExceptionMessageHelper {
 
     private ExceptionMessageHelper() {}
 
-    public static String entityNotFoundMsg(Long id) {
+    public static String entityNotFoundMsg(int id) {
         return String.format("Entity with id: %d not found", id);
     }
 

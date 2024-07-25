@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.slavapleshkov.springboot.spring_rest.model.TypeOfMonuments;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,6 @@ import java.util.List;
 @ToString
 @RequiredArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@Builder
 public class MonumentDto {
 
     private int id;
@@ -45,5 +43,73 @@ public class MonumentDto {
     private List<ServiceDto> serviceEntities;
 
     private List<Long> serviceIds;
+
+    private MonumentDto(MonumentDtoBuilder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.dateOfCreation = builder.dateOfCreation;
+        this.typeOfMonuments = builder.typeOfMonuments;
+        this.serviceIds = builder.serviceIds;
+        this.townId = builder.townId;
+        this.town = builder.town;
+        this.serviceEntities = builder.serviceEntities;
+    }
+
+    public static MonumentDtoBuilder builder() {
+        return new MonumentDtoBuilder();
+    }
+
+
+    public static class MonumentDtoBuilder {
+        private int id;
+        private String name;
+        private LocalDate dateOfCreation;
+        private TypeOfMonuments typeOfMonuments;
+        private int townId;
+        private TownDto town;
+        private List<ServiceDto> serviceEntities;
+        private List<Long> serviceIds;
+
+
+        public MonumentDtoBuilder id(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public MonumentDtoBuilder townId(int townId) {
+            this.townId = townId;
+            return this;
+        }
+
+        public MonumentDtoBuilder serviceIds(List<Long> serviceIds) {
+            this.serviceIds = serviceIds;
+            return this;
+        }
+
+        public MonumentDtoBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+        public MonumentDtoBuilder dateOfCreation(LocalDate dateOfCreation) {
+            this.dateOfCreation = dateOfCreation;
+            return this;
+        }
+
+        public MonumentDtoBuilder type(TypeOfMonuments typeOfMonuments) {
+            this.typeOfMonuments = typeOfMonuments;
+            return this;
+        }
+        public MonumentDtoBuilder town(TownDto town) {
+            this.town = town;
+            return this;
+        }
+        public MonumentDtoBuilder serviceEntities(List<ServiceDto> serviceEntities) {
+            this.serviceEntities = serviceEntities;
+            return this;
+        }
+        public MonumentDto build() {
+            return new MonumentDto(this);
+        }
+    }
 
 }
