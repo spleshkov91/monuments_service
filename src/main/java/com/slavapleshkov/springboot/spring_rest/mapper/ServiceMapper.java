@@ -7,7 +7,7 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(imports = {MonumentMapper.class})
 public interface ServiceMapper {
 
     ServiceMapper INSTANCE = Mappers.getMapper(ServiceMapper.class);
